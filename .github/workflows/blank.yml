@@ -1,4 +1,4 @@
-name: hometask
+name: Show Name
 
 on:
   push:
@@ -6,15 +6,16 @@ on:
       - main
 
 jobs:
-  run_script:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: hometask
-        run: |
-          # Bash script to execute
-          echo "First Name: Natalia"
-          echo "Last Name: Solokha"
+    - name: Run a bash script
+      run: |
+        echo "Running the docker image..."
+        docker run -d --name my_container my_docker_image
+        echo "Running the script inside the container..."
+        docker exec -it my_container bash -c "echo 'First name: Nat'; echo 'Last name: S'"
