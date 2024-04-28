@@ -1,4 +1,4 @@
-name: Display Name on Push to Main
+name: Start Docker Container
 
 on:
   push:
@@ -6,12 +6,17 @@ on:
       - main
 
 jobs:
-  display-name:
-    runs-on: ubuntu-latest  # Runner operating system
-    steps:
-      - uses: actions/checkout@v3 
-      - name: Run Custom Script 
-        run: |  # Multi-line command execution
-          docker run --rm alpine echo "My name is Nat"  
-         
+  start-container:
+    runs-on: ubuntu-latest
 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Docker container
+        run: |
+          docker pull your-image-name  # Pull the Docker image from a registry
+          docker run your-image-name   # Run the Docker container
+
+      - name: Display name
+        run: echo "Your First Name Last Name"
