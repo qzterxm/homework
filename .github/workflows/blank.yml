@@ -1,0 +1,20 @@
+name: hometask
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: hometask
+        run: |
+          # Bash script to execute
+          echo "First Name: Natalia"
+          echo "Last Name: Solokha"
