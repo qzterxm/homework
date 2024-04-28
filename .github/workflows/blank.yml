@@ -1,4 +1,4 @@
-name: Show Name
+name: Display Name on Push to Main
 
 on:
   push:
@@ -6,16 +6,12 @@ on:
       - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  display-name:
+    runs-on: ubuntu-latest  # Runner operating system
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - uses: actions/checkout@v3 
+      - name: Run Custom Script 
+        run: |  # Multi-line command execution
+          docker run --rm alpine echo "My name is Nat"  
+         
 
-    - name: Run a bash script
-      run: |
-        echo "Running the docker image..."
-        docker run -d --name my_container my_docker_image
-        echo "Running the script inside the container..."
-        docker exec -it my_container bash -c "echo 'First name: Nat'; echo 'Last name: S'"
